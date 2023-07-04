@@ -28,5 +28,6 @@ public abstract class Product {
 
     public abstract String ToString();
     public abstract String writeTXT();
-
+    public abstract String variableExtra();
+    public abstract String getType();
 }

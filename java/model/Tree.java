@@ -23,8 +23,18 @@ public class Tree extends Product {
     public String ToString() {
         return String.format("  ID:%d Product:Tree        Price:%.2f    Height:%.2f",super.getIdProduct(), super.getPrice(), getHeight());
     }
+    
     @Override
     public String writeTXT() {
         return super.getIdProduct() + " " + "Tree" + " " + super.getPrice() + " " + getHeight();
     }
+    
+    @Override
+    public String variableExtra() {
+    	return "" + getHeight();
+    }
+	@Override
+	public String getType() {
+		return "Tree";
+	}
 }

@@ -29,4 +29,15 @@ public class Decor extends Product {
     public String writeTXT() {
         return super.getIdProduct() + " " + "Decoration" + " " + super.getPrice() + " " + getMaterial();
     }
+    
+    @Override
+    public String variableExtra() {
+		return getMaterial();
+    	
+    }
+
+	@Override
+	public String getType() {
+		return "Decoration";
+	}
 }

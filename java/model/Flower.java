@@ -27,4 +27,13 @@ public class Flower extends Product {
     public String writeTXT() {
         return super.getIdProduct() + " " + "Flower" + " " + super.getPrice() + " " + getColor();
     }
+    @Override
+    public String variableExtra() {
+		return getColor();
+    	
+    }
+	@Override
+	public String getType() {
+		return "Flower";
+	}
 }
