@@ -13,7 +13,18 @@ import java.util.List;
 public class txtManagerImpl implements IDDBBManager{
 
 	static private final String PATH_TXT_maxID = "src/main/java/resources/maxID.txt";
+	static Connection conn;
+	static {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
 
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/floristeria", "root", "1234");
+
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public void overrideNextIDinTXT(int id){
 		FileWriter fileWriterID = null;
@@ -78,8 +89,6 @@ public class txtManagerImpl implements IDDBBManager{
 			rs = query("SELECT MAX(stock_id) FROM stock");
 			rs.next();
 			maxID_DB = rs.getInt(1);
-		}catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		}catch ( SQLException e){
 			e.printStackTrace();
 		}
@@ -128,7 +137,7 @@ public class txtManagerImpl implements IDDBBManager{
 
 				productes.add(product);
 			}
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
@@ -144,13 +153,6 @@ public class txtManagerImpl implements IDDBBManager{
 	@Override
 	public void addProduct(Product product) {
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-
-			Connection conn;
-
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/floristeria", "root", "1234");
-
-
 			String[] tipus = product.getClass().toString().split(".", 2);
 
 			String insert = "INSERT INTO `floristeria`.`stock` (`stock_id`, `type`, `price`, `other`) VALUES ('" + product.getIdProduct() + "', '" + product.getType()
@@ -162,8 +164,6 @@ public class txtManagerImpl implements IDDBBManager{
 
 		} catch (SQLException e) {//aquesta excepcio salta pero es nomes un "data truncated" es a dir que en teoria a la columna "type" es perden dades, el tipus surt be ossigui que no tinc ni idea que s'esta perdent, jo crec que el podem ignorar pefrectament
 			e.printStackTrace();
-		}catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		}
 	}
 
@@ -171,13 +171,6 @@ public class txtManagerImpl implements IDDBBManager{
 	@Override
 	public void removeProduct(Product product) {
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-
-			Connection conn;
-
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/floristeria", "root", "1234");
-
-
 			String delete = "DELETE FROM `floristeria`.`stock` WHERE (`stock_id` = '" + product.getIdProduct() + "') and (`type` = '" + product.getType() + "') and (`price` = '" + product.getPrice() 
 			+ "') and (`other` = '" + product.variableExtra() + "');";
 
@@ -185,17 +178,14 @@ public class txtManagerImpl implements IDDBBManager{
 
 			preparao.execute();
 
-		} catch (SQLException | ClassNotFoundException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 
-	public ResultSet query(String query) throws ClassNotFoundException, SQLException {
+	public ResultSet query(String query) throws SQLException {
 
-		Class.forName("com.mysql.cj.jdbc.Driver");
-
-		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/floristeria", "root", "1234");
 		Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
 
 		ResultSet rs = stmt.executeQuery(query);
@@ -205,12 +195,6 @@ public class txtManagerImpl implements IDDBBManager{
 	
 	public void createSQL() {
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-
-			Connection conn;
-
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "1234");
-
 			String insert = "CREATE DATABASE IF NOT EXISTS floristeria;";
 
 			PreparedStatement preparao = conn.prepareStatement(insert);
@@ -229,8 +213,6 @@ public class txtManagerImpl implements IDDBBManager{
 			preparao.execute();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
-		}catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
