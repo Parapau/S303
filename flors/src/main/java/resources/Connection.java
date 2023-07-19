@@ -61,8 +61,8 @@ public class Connection {
                     double precio = documentoProducto.getDouble("precio");
 
                     switch (nombre) {
-                        case "Arbol" -> {
-                            int altura = documentoProducto.getInteger("altura");
+                        case "Árbol" -> {
+                            double altura = documentoProducto.getDouble("altura");
                             ticket.getProducts().add(new Tree(1, precio, altura));
                         }
                         case "Flor" -> {
