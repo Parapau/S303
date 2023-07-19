@@ -37,12 +37,12 @@ public class Menu {
 					);
 			String choose= scanner.next();
 			try {
-			option = Integer.parseInt(choose);
-			RunMenu(option, stock, sales);
+				option = Integer.parseInt(choose);
+				RunMenu(option, stock, sales);
 			} catch (NumberFormatException e) {
 				System.out.println("por favor, introduce valores con sentido.");
 			}
-			
+
 
 		}while (option != 0);
 	}
@@ -295,14 +295,13 @@ public class Menu {
 				switch (text1.toLowerCase()) {
 				case "arbol" -> {
 					//imprimo por consola la lista de árboles que tenemos en stock
-					
-					
+
+
 					Stream<String> llista = stock.stream().filter(product -> product instanceof Tree).map(Product::ToString);
-					
+
 					if (llista.count() != 0) {
-						llista = llista = stock.stream().filter(product -> product instanceof Tree).map(Product::ToString);
-						
-						llista.forEach(System.out::println);
+						stock.stream().filter(product -> product instanceof Tree).map(Product::ToString).forEach(System.out::println);
+
 						//pido al usuario que ingrese el índice del arbol que desee
 						msg = ("Introduce el índice del árbol que deseas comprar: ");
 
@@ -328,7 +327,7 @@ public class Menu {
 					} else {
 						System.out.println("No tenemos arboles, lo siento");
 					}
-					
+
 
 				}
 				case "flor" -> {
@@ -336,26 +335,27 @@ public class Menu {
 					Stream<String> llista = stock.stream().filter(product -> product instanceof Flower).map(Product::ToString);
 
 					if (llista.count() != 0) {
-						llista.forEach(System.out::println);
-					msg = ("Introduce el índice de la flor que deseas comprar: ");
+						stock.stream().filter(product -> product instanceof Flower).map(Product::ToString).forEach(System.out::println);
 
-					do {
-						System.out.println(msg);
-						indexStr = scanner.next();
-						index = Integer.parseInt(indexStr);
-						msg = "❌No hemos encontrado el índice de esta flor :(, por favor vuelvelo a introducir";
-						index = SearchIndex(index, stock);
-					} while (index == -1);
+						msg = ("Introduce el índice de la flor que deseas comprar: ");
 
-					//Agrego el producto a la lista de ventas del ticket creado
-					ticket.getProducts().add(stock.get(index));
-					//elimino el producto del stock
-					DDBBManager.removeProduct(stock.get(index));
+						do {
+							System.out.println(msg);
+							indexStr = scanner.next();
+							index = Integer.parseInt(indexStr);
+							msg = "❌No hemos encontrado el índice de esta flor :(, por favor vuelvelo a introducir";
+							index = SearchIndex(index, stock);
+						} while (index == -1);
 
-					stock.remove(index);
-					//aviso que el proceso ocurrió con exito
-					System.out.println("✅Flor agregada al ticket de compra :D");
-					break;
+						//Agrego el producto a la lista de ventas del ticket creado
+						ticket.getProducts().add(stock.get(index));
+						//elimino el producto del stock
+						DDBBManager.removeProduct(stock.get(index));
+
+						stock.remove(index);
+						//aviso que el proceso ocurrió con exito
+						System.out.println("✅Flor agregada al ticket de compra :D");
+						break;
 					} else {
 						System.out.println("Lo siento no tenemos flores");
 					}
@@ -366,27 +366,27 @@ public class Menu {
 					Stream<String> llista = stock.stream().filter(product -> product instanceof Decor).map(Product::ToString);
 
 					if (llista.count() != 0) {
-						llista.forEach(System.out::println);
-					
-					msg = ("Introduce el índice de la decoracion que deseas comprar: ");
+						stock.stream().filter(product -> product instanceof Decor).map(Product::ToString).forEach(System.out::println);
 
-					do {
-						System.out.println(msg);
-						indexStr = scanner.next();
-						index = Integer.parseInt(indexStr);
-						msg = "❌No hemos encontrado el índice de esta decoracion :(, por favor vuelvelo a introducir";
-						index = SearchIndex(index, stock);
-					} while (index == -1);
+						msg = ("Introduce el índice de la decoracion que deseas comprar: ");
 
-					//Agrego el producto a la lista de ventas del ticket creado
-					ticket.getProducts().add(stock.get(index));
-					//elimino el producto del stock
-					DDBBManager.removeProduct(stock.get(index));
+						do {
+							System.out.println(msg);
+							indexStr = scanner.next();
+							index = Integer.parseInt(indexStr);
+							msg = "❌No hemos encontrado el índice de esta decoracion :(, por favor vuelvelo a introducir";
+							index = SearchIndex(index, stock);
+						} while (index == -1);
 
-					stock.remove(index);
-					//aviso que el proceso ocurrió con exito
-					System.out.println("✅Decoracion agregada al ticket de compra :D");
-					break;
+						//Agrego el producto a la lista de ventas del ticket creado
+						ticket.getProducts().add(stock.get(index));
+						//elimino el producto del stock
+						DDBBManager.removeProduct(stock.get(index));
+
+						stock.remove(index);
+						//aviso que el proceso ocurrió con exito
+						System.out.println("✅Decoracion agregada al ticket de compra :D");
+						break;
 					} else {
 						System.out.println("Lo siento no tenemos Decoraciones");
 					}
@@ -395,7 +395,7 @@ public class Menu {
 				default -> System.out.println("Opcion no encontrada. si ves esto es que soy gilipollas.");
 				}
 			}
-			
+
 			if (ticket.getProducts().size() != 0) {
 				Connection.guardarTicketEnDB(ticket);
 
@@ -405,7 +405,7 @@ public class Menu {
 			} else {
 				System.out.println("No has añadido nada asi no se crea ningun ticket");
 			}
-			
+
 		} else {
 			System.out.println("Lo siento pero no nos queda nada de stock en la tienda, por favor espera a que tengamos nuevos productos antes de comprar nada.");
 		}
