@@ -321,7 +321,7 @@ public class Menu {
 				}
 				case "flor" -> {
 					//imprimo por consola la lista de flores que tenemos en stock
-					stock.stream().filter(product -> product instanceof Flower).map(Product::ToString).forEach(System.out::println);
+					stock.stream().filter(product -> product instanceof Decor).map(Product::ToString).forEach(System.out::println);
 
 
 
