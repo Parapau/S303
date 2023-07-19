@@ -7,7 +7,9 @@ import services.txtManagerImpl;
 
 //import javax.swing.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class Menu {
 
@@ -293,38 +295,48 @@ public class Menu {
 				switch (text1.toLowerCase()) {
 				case "arbol" -> {
 					//imprimo por consola la lista de árboles que tenemos en stock
-					stock.stream().filter(product -> product instanceof Tree).map(Product::ToString).forEach(System.out::println);
+					
+					
+					Stream<String> llista = stock.stream().filter(product -> product instanceof Tree).map(Product::ToString);
+					
+					if (llista.count() != 0) {
+						llista = llista = stock.stream().filter(product -> product instanceof Tree).map(Product::ToString);
+						
+						llista.forEach(System.out::println);
+						//pido al usuario que ingrese el índice del arbol que desee
+						msg = ("Introduce el índice del árbol que deseas comprar: ");
 
-					//pido al usuario que ingrese el índice del arbol que desee
-					msg = ("Introduce el índice del árbol que deseas comprar: ");
+						do {
+							System.out.println(msg);
+							indexStr = scanner.next();
+							index = Integer.parseInt(indexStr);
+							msg = "❌No hemos encontrado el índice de este árbol :(, por favor vuelvelo a introducir";
+							index = SearchIndex(index, stock);
+						} while (index == -1);
 
-					do {
-						System.out.println(msg);
-						indexStr = scanner.next();
-						index = Integer.parseInt(indexStr);
-						msg = "❌No hemos encontrado el índice de este árbol :(, por favor vuelvelo a introducir";
-						index = SearchIndex(index, stock);
-					} while (index == -1);
+						//Agrego el producto a la lista de ventas del ticket creado
+						ticket.getProducts().add(stock.get(index));
+						//elimino el producto del stock
+						DDBBManager.removeProduct(stock.get(index));
 
-					//Agrego el producto a la lista de ventas del ticket creado
-					ticket.getProducts().add(stock.get(index));
-					//elimino el producto del stock
-					DDBBManager.removeProduct(stock.get(index));
-
-					stock.remove(index);
-					//aviso que el proceso ocurrió con exito
+						stock.remove(index);
+						//aviso que el proceso ocurrió con exito
 
 
-					System.out.println("✅Árbol agregado al ticket de compra :D");
-					break;
+						System.out.println("✅Árbol agregado al ticket de compra :D");
+						break;
+					} else {
+						System.out.println("No tenemos arboles, lo siento");
+					}
+					
 
 				}
 				case "flor" -> {
 					//imprimo por consola la lista de flores que tenemos en stock
-					stock.stream().filter(product -> product instanceof Decor).map(Product::ToString).forEach(System.out::println);
+					Stream<String> llista = stock.stream().filter(product -> product instanceof Flower).map(Product::ToString);
 
-
-
+					if (llista.count() != 0) {
+						llista.forEach(System.out::println);
 					msg = ("Introduce el índice de la flor que deseas comprar: ");
 
 					do {
@@ -344,14 +356,18 @@ public class Menu {
 					//aviso que el proceso ocurrió con exito
 					System.out.println("✅Flor agregada al ticket de compra :D");
 					break;
+					} else {
+						System.out.println("Lo siento no tenemos flores");
+					}
 				}
 
 				case "decoracion" -> {
 					//imprimo por consola la lista de decoraciones que tenemos en stock
-					stock.stream().filter(product -> product instanceof Flower).map(Product::ToString).forEach(System.out::println);
+					Stream<String> llista = stock.stream().filter(product -> product instanceof Decor).map(Product::ToString);
 
-
-
+					if (llista.count() != 0) {
+						llista.forEach(System.out::println);
+					
 					msg = ("Introduce el índice de la decoracion que deseas comprar: ");
 
 					do {
@@ -369,18 +385,27 @@ public class Menu {
 
 					stock.remove(index);
 					//aviso que el proceso ocurrió con exito
-					System.out.println("✅Flor agregada al ticket de compra :D");
+					System.out.println("✅Decoracion agregada al ticket de compra :D");
 					break;
+					} else {
+						System.out.println("Lo siento no tenemos Decoraciones");
+					}
 				}
 
 				default -> System.out.println("Opcion no encontrada. si ves esto es que soy gilipollas.");
 				}
 			}
-			Connection.guardarTicketEnDB(ticket);
+			
+			if (ticket.getProducts().size() != 0) {
+				Connection.guardarTicketEnDB(ticket);
 
-			//agregamos el tiquete al inventario de ventas de la tienda
-			sales.add(ticket);
-			System.out.println("✅Ticket generado exitosamente :D");
+				//agregamos el tiquete al inventario de ventas de la tienda
+				sales.add(ticket);
+				System.out.println("✅Ticket generado exitosamente :D");
+			} else {
+				System.out.println("No has añadido nada asi no se crea ningun ticket");
+			}
+			
 		} else {
 			System.out.println("Lo siento pero no nos queda nada de stock en la tienda, por favor espera a que tengamos nuevos productos antes de comprar nada.");
 		}
