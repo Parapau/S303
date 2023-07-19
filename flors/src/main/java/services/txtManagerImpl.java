@@ -16,12 +16,9 @@ public class txtManagerImpl implements IDDBBManager{
 	static Connection conn;
 	static {
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/floristeria", "root", "1234");
 
-		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
