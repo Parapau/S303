@@ -316,6 +316,7 @@ public class Menu {
 
 
 					System.out.println("✅Árbol agregado al ticket de compra :D");
+					break;
 
 				}
 				case "flor" -> {
@@ -342,19 +343,15 @@ public class Menu {
 					stock.remove(index);
 					//aviso que el proceso ocurrió con exito
 					System.out.println("✅Flor agregada al ticket de compra :D");
+					break;
 				}
 
 				case "decoracion" -> {
 					//imprimo por consola la lista de decoraciones que tenemos en stock
-					stock.stream().filter(product -> product instanceof Decor).map(Product::ToString).forEach(System.out::println);
+					stock.stream().filter(product -> product instanceof Flower).map(Product::ToString).forEach(System.out::println);
 
-					//pido al usuario que ingrese el índice de la decoración que desee
-					System.out.print("Introduce el índice de la decoración que deseas comprar: ");
-					String Text2 = scanner.next();
-					int number3 = Integer.parseInt(Text2);
 
-					//Verificamos el índice de la decoración dentro del stock
-					int index2 = SearchIndex(number3, stock);
+
 					msg = ("Introduce el índice de la decoracion que deseas comprar: ");
 
 					do {
@@ -365,7 +362,6 @@ public class Menu {
 						index = SearchIndex(index, stock);
 					} while (index == -1);
 
-
 					//Agrego el producto a la lista de ventas del ticket creado
 					ticket.getProducts().add(stock.get(index));
 					//elimino el producto del stock
@@ -373,7 +369,8 @@ public class Menu {
 
 					stock.remove(index);
 					//aviso que el proceso ocurrió con exito
-					System.out.println("✅Decoracion agregada al ticket de compra :D");
+					System.out.println("✅Flor agregada al ticket de compra :D");
+					break;
 				}
 
 				default -> System.out.println("Opcion no encontrada. si ves esto es que soy gilipollas.");
