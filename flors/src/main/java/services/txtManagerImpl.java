@@ -16,7 +16,7 @@ public class txtManagerImpl implements IDDBBManager{
 	static Connection conn;
 	static {
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/floristeria", "root", "1234");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/floristeria", "root", "rootroot");
 
 		} catch (SQLException e) {
 			e.printStackTrace();

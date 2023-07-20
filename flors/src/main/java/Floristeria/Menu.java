@@ -40,7 +40,7 @@ public class Menu {
 				option = Integer.parseInt(choose);
 				RunMenu(option, stock, sales);
 			} catch (NumberFormatException e) {
-				System.out.println("por favor, introduce valores con sentido.");
+				System.out.print("por favor, introduce valores con sentido.");
 			}
 
 
@@ -275,7 +275,7 @@ public class Menu {
 			msg = ("Introduzca la cantidad de productos que desea agregar: ");
 			do {
 
-				System.out.println(msg);
+				System.out.print(msg);
 				text = scanner.next();
 				number = Integer.parseInt(text);
 
@@ -306,7 +306,7 @@ public class Menu {
 						msg = ("Introduce el índice del árbol que deseas comprar: ");
 
 						do {
-							System.out.println(msg);
+							System.out.print(msg);
 							indexStr = scanner.next();
 							index = Integer.parseInt(indexStr);
 							msg = "❌No hemos encontrado el índice de este árbol :(, por favor vuelvelo a introducir";
@@ -340,7 +340,7 @@ public class Menu {
 						msg = ("Introduce el índice de la flor que deseas comprar: ");
 
 						do {
-							System.out.println(msg);
+							System.out.print(msg);
 							indexStr = scanner.next();
 							index = Integer.parseInt(indexStr);
 							msg = "❌No hemos encontrado el índice de esta flor :(, por favor vuelvelo a introducir";
@@ -371,7 +371,7 @@ public class Menu {
 						msg = ("Introduce el índice de la decoracion que deseas comprar: ");
 
 						do {
-							System.out.println(msg);
+							System.out.print(msg);
 							indexStr = scanner.next();
 							index = Integer.parseInt(indexStr);
 							msg = "❌No hemos encontrado el índice de esta decoracion :(, por favor vuelvelo a introducir";
