@@ -4,21 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d40c4e47-e270-40e5-aed2-2269975169ca" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/Floristeria/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Floristeria/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/txtManagerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/txtManagerImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Floristeria/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Floristeria/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Floristeria/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Floristeria/Menu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Floristeria/Store.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Floristeria/Store.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/model/Decor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/Decor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/model/Flower.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/Flower.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/model/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/Product.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/model/Ticket.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/Ticket.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/model/Tree.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/Tree.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/resources/Connection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/resources/Connection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/services/IDDBBManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/services/IDDBBManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/services/txtManagerImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/services/txtManagerImpl.class" afterDir="false" />
-    </list>
+    <list default="true" id="d40c4e47-e270-40e5-aed2-2269975169ca" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
